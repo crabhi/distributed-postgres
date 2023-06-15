@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "distributed-postgres"
+version = "0.1.0"
+description = ""
+authors = ["Filip Sedlak"]
+license = "GPL3"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+psycopg2-binary = "^2.9.6"
+
+[tool.poetry.dev-dependencies]
+ipython = "^8.14.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
