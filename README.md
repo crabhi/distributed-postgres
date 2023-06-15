@@ -7,6 +7,7 @@ A simple demo of two-phase commit over PostgreSQL
 ```bash
 ./create_dbs.sh
 
+poetry install
 poetry shell
 
 ipython
