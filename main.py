@@ -2,6 +2,7 @@ import os
 import time
 
 import psycopg2
+from psycopg2.errors import UndefinedObject
 
 LAST_TRANSACTION_ID = 0
 SHARD_COUNT = 2
@@ -158,7 +159,10 @@ def cleanup_transactions():
         coordinator.execute('LOCK TABLE transactions_to_commit')
         coordinator.execute('SELECT transaction_id, worker_id FROM transactions_to_commit')
         for transaction_id, worker in coordinator.fetchall():
-            sql(worker, 'COMMIT PREPARED %s', (transaction_id,))
+            try:
+                sql(worker, 'COMMIT PREPARED %s', (transaction_id,))
+            except UndefinedObject:
+                pass  # Did we fail just after committing?
 
         coordinator.execute('TRUNCATE TABLE transactions_to_commit')
 
