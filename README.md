@@ -32,7 +32,8 @@ The following functions demonstrate two-phase commit properties:
 If you set `main.STEP` to `True`, the app will always wait for confirmation before
 executing a SQL command on a worker.
 
-In-between the steps, you can try killing or suspending different workers.
+In-between the steps, you can try killing or suspending different workers and see what happens
+with different implementations of the transaction.
 
 ```python
 In [1]: import main
